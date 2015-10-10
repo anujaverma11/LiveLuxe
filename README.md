@@ -18,3 +18,5 @@ jQuery
 Twilio 
 <br>
 Google Calendar API
+<br>
+The  first MVP of Luxe was built in 6 days. 
