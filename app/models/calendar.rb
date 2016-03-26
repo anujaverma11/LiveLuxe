@@ -2,7 +2,7 @@ require 'google/api_client'
 
 
 class Calendar
-
+# https://www.googleapis.com/oauth2/v4/token
   GOOGLE_EMAIL = ENV['GOOGLE_EMAIL']
   CLIENT_EMAIL = ENV['GOOGLE_CLIENT_EMAIL']
 
@@ -18,13 +18,24 @@ class Calendar
 
     def connect!
       @client = Google::APIClient.new(:application_name => 'LUXE', :application_version => '1')
-      key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
-      service_account = Google::APIClient::JWTAsserter.new(
-        CLIENT_EMAIL,
-        ['https://www.googleapis.com/auth/calendar'],
-        key
-      )
-      @client.authorization = service_account.authorize(CLIENT_EMAIL)
+      # key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
+      key = Google::APIClient::KeyUtils.load_from_pkcs12('config/google_calendar_key.p12', 'notasecret')
+      # service_account = Google::APIClient::JWTAsserter.new(
+      #   CLIENT_EMAIL,
+      #   ['https://www.googleapis.com/auth/calendar'],
+      #   key
+      # )
+
+      @client.authorization = Signet::OAuth2::Client.new(
+                         :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
+                         :audience             => 'https://accounts.google.com/o/oauth2/token',
+                         :scope                => 'https://www.googleapis.com/auth/calendar',
+                         :issuer               => 'luxe-779@luxe-1074.iam.gserviceaccount.com',
+                         :signing_key          => key)
+
+      @client.authorization.fetch_access_token!
+      # @client.authorization = service_account.authorize(CLIENT_EMAIL)
+      service = client.discovered_api('calendar', 'v3')
 
       @client
     end
@@ -152,11 +163,13 @@ class Calendar
     self
   end
 
-  module GoogleCalendarKey
-    def self.get
-      Base64.decode64 ENV['GOOGLE_CALENDAR_KEY']
-    end
-  end
+  # module GoogleCalendarKey
+  #   def self.get
+  #     gOOGLE_CALENDAR_KEY = '../config/google_calendar_key.json'
+  #     Base64.decode64 gOOGLE_CALENDAR_KEY
+  #     # Base64.decode64 ENV['GOOGLE_CALENDAR_KEY']
+  #  end
+  # end
 
 
 end
