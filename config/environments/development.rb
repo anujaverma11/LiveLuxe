@@ -3,6 +3,8 @@ Rails.application.configure do
 
   # Setup Redis config to prepare for Heroku
 
+  ENV["REDISTOGO_URL"] = 'redis://username:password@my.host:6389'
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
