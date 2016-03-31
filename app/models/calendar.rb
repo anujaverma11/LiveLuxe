@@ -181,8 +181,9 @@ class Calendar
 
   module GoogleCalendarKey
     def self.get
-      p ENV['GOOGLE_CALENDAR_KEY']
-      Base64.decode64(ENV['GOOGLE_CALENDAR_KEY'])
+
+      abcd = Base64.decode64(ENV['GOOGLE_CALENDAR_KEY'])
+      p abcd
    end
   end
 
