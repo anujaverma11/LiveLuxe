@@ -183,7 +183,7 @@ class Calendar
     def self.get
 
       abcd = Base64.decode64(ENV['GOOGLE_CALENDAR_KEY'])
-      p abcd.gsub('\\r', "\r").gsub('\\n', "\n")
+      p abcd = abcd.gsub('\r\n', "\r")
       return abcd
    end
   end
