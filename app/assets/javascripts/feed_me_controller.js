@@ -1,4 +1,4 @@
-//= require ./luxe
+x//= require ./luxe
 angular.module('luxe').controller('FeedMeController', [ '$scope', '$timeout', '$http', function ($scope, $timeout, $http) {
 
   $scope.date = new Date;

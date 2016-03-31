@@ -1,5 +1,5 @@
 require 'google/api_client'
-
+require 'base64'
 
 class Calendar
 # https://www.googleapis.com/oauth2/v4/token
@@ -16,13 +16,26 @@ class Calendar
       @calendar_api ||= client.discovered_api('calendar', 'v3')
     end
 
+    # def connect!
+
+    #   @client = Google::APIClient.new(:application_name => 'LUXE', :application_version => '1')
+    #   key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
+    #   service_account = Google::APIClient::JWTAsserter.new(
+    #     CLIENT_EMAIL,
+    #     ['https://www.googleapis.com/auth/calendar'],
+    #     key
+    #   )
+    #   @client.authorization = service_account.authorize(CLIENT_EMAIL)
+
+    #   @client
+    # end
+
+
     def connect!
       @client = Google::APIClient.new(:application_name => 'LUXE', :application_version => '1')
-      # key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
-      key = Google::APIClient::KeyUtils.load_from_pkcs12(ENV['P12_CONTENTS'], 'notasecret')
-      p '*' * 50
-      p key
-      p '*' * 50
+      key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
+      # key = Google::APIClient::KeyUtils.load_from_pkcs12('config/google_calendar_key.p12', 'notasecret')
+
       # service_account = Google::APIClient::JWTAsserter.new(
       #   CLIENT_EMAIL,
       #   ['https://www.googleapis.com/auth/calendar'],
@@ -168,7 +181,7 @@ class Calendar
 
   module GoogleCalendarKey
     def self.get
-      p Base64.decode64 ENV['GOOGLE_CALENDAR_KEY']
+      Base64.decode64(ENV['GOOGLE_CALENDAR_KEY'])
    end
   end
 
