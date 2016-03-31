@@ -19,7 +19,8 @@ class Calendar
     def connect!
 
       @client = Google::APIClient.new(:application_name => 'LUXE', :application_version => '1')
-      key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
+      # key = Google::APIClient::PKCS12.load_key('config/google_calendar_key.p12', 'notasecret')
+      key = Google::APIClient::KeyUtils.load_from_pkcs12(GoogleCalendarKey.get, 'notasecret')
       service_account = Google::APIClient::JWTAsserter.new(
         CLIENT_EMAIL,
         ['https://www.googleapis.com/auth/calendar'],
@@ -33,8 +34,8 @@ class Calendar
 
     # def connect!
     #   @client = Google::APIClient.new(:application_name => 'LUXE', :application_version => '1')
-    #   key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
-    #   # key = Google::APIClient::KeyUtils.load_from_pkcs12('config/google_calendar_key.p12', 'notasecret')
+    #   #key = Google::APIClient::PKCS12.load_key(GoogleCalendarKey.get, 'notasecret')
+    #   key = Google::APIClient::KeyUtils.load_from_pkcs12(GoogleCalendarKey.get, 'notasecret')
 
     #   # service_account = Google::APIClient::JWTAsserter.new(
     #   #   CLIENT_EMAIL,
@@ -48,8 +49,8 @@ class Calendar
     #                      :scope                => 'https://www.googleapis.com/auth/calendar',
     #                      :issuer               => 'luxe-779@luxe-1074.iam.gserviceaccount.com',
     #                      :signing_key          => key)
-
-    #   @client.authorization.fetch_access_token!
+    #   client.authorization = nil
+    #   # @client.authorization.fetch_access_token!
     #   # @client.authorization = service_account.authorize(CLIENT_EMAIL)
     #   service = client.discovered_api('calendar', 'v3')
 
@@ -182,10 +183,10 @@ class Calendar
   module GoogleCalendarKey
     def self.get
 
-      Base64.decode64(ENV['GOOGLE_CALENDAR_KEY'])
-      # abcd = abcd.gsub('\r\n', "\r")
-      # p abcd
-      # return abcd
+      abc = Base64.strict_decode64(ENV['GOOGLE_CALENDAR_KEY'])
+      p "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+      p abc
+      p "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
    end
   end
 
