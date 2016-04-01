@@ -17,10 +17,10 @@ class Calendar
     end
 
     def connect!
-
+      keypath = Rails.root.join('config','google_calendar_key.p12').to_s
       @client = Google::APIClient.new(:application_name => 'LUXE', :application_version => '1')
-      # key = Google::APIClient::PKCS12.load_key('config/google_calendar_key.p12', 'notasecret')
-      key = Google::APIClient::KeyUtils.load_from_pkcs12(GoogleCalendarKey.get, 'notasecret')
+      key = Google::APIClient::PKCS12.load_key(keypath, 'notasecret')
+      # key = Google::APIClient::KeyUtils.load_from_pkcs12(GoogleCalendarKey.get, 'notasecret') 'config/google_calendar_key.p12'
       service_account = Google::APIClient::JWTAsserter.new(
         CLIENT_EMAIL,
         ['https://www.googleapis.com/auth/calendar'],
@@ -182,7 +182,6 @@ class Calendar
 
   module GoogleCalendarKey
     def self.get
-
       abc = Base64.strict_decode64(ENV['GOOGLE_CALENDAR_KEY'])
       p "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
       p abc
