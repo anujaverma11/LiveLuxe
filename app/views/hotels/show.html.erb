@@ -1,59 +1,68 @@
 <div class="whole-page">
-<div class="logout">
-  <%= link_to "Log out", logout_path %>
-</div>
-    <h1 id="tag">Live LUXE at <%=@hotel.name %> </h1>
-
+  <div class="logout">
+    <%= link_to "Log out", logout_path %>
+  </div class="hotel-image">
 </div>
 
 <div class="hotel-image">
+  <h1 id="tag">Offers guests the refined LuxEury</h1>
+  <div class="hotel-info">
+    <h2 id="tag"><%= @hotel.name %></h2>
+    <h3 id="tag"><%= @hotel.address %></h3>
+    <h3 id="tag"><%= @hotel.amenities %></h3>
+  </div>
 </div>
-  <div class="hotel-show-page">
-    <div class="hotel-info">
-      <h2><%= @hotel.name %></h2>
-      <h3><%= @hotel.address %></h3>
-      <h3><%= @hotel.amenities %></h3>
+
+<div class="hotel-show-page">
+
+
+  <div style="width: 1000px;">
+
+   <div style="float: left; width: 300px; border:1px solid black; text-align:center">
+
+    <div class="new-guest-form one">
+      <h4>New Guest:</h4>
+      <%= form_for :guest, url: guests_path do |f| %>
+        <p>
+          <%= f.label :first_name %><br />
+          <%= f.text_field :first_name %>
+        </p>
+        <p>
+          <%= f.label :last_name %><br />
+          <%= f.text_field :last_name %>
+        </p>
+         <p>
+          <%= f.label :phone %><br />
+          <%= f.text_field :phone %>
+        </p>
+        <p>
+          <%= f.label :room_number %><br />
+          <%= f.text_field :room_number %>
+        </p>
+
+        <p>
+          <%= f.label :email %><br />
+          <%= f.text_field :email %>
+        </p>
+       <%= f.submit "Submit", :class => "btn btn-default" %>
+      <% end %>
     </div>
-    <div class="new-guest-form">
-    <h4>New Guest:</h4>
-    <%= form_for :guest, url: guests_path do |f| %>
-      <p>
-        <%= f.label :first_name %><br />
-        <%= f.text_field :first_name %>
-      </p>
-      <p>
-        <%= f.label :last_name %><br />
-        <%= f.text_field :last_name %>
-      </p>
-       <p>
-        <%= f.label :phone %><br />
-        <%= f.text_field :phone %>
-      </p>
-      <p>
-        <%= f.label :room_number %><br />
-        <%= f.text_field :room_number %>
-      </p>
-
-      <p>
-        <%= f.label :email %><br />
-        <%= f.text_field :email %>
-      </p>
-     <%= f.submit "Submit", :class => "btn btn-default" %>
-
-    <% end %>
+   </div>
+   <div style="float: left; width: 300px;  border:1px solid black; text-align:center">
+    <div class="two">
+      <% @guests.each do |guest| %>
+        <p><b>Room Number: </b><%= guest.room_number %></p>
+        <p><b>Name: </b><%= guest.first_name %> <%= guest.last_name %></p>
+        <p><b>Phone: </b><%= guest.phone %></p>
+      <% end %>
+    </div>
+   </div>
+   <div style="float: left; width: 200px; margin-left:10px">
+    <input type="button" class="calendar_button btn btn-default" value="Show Calendar" />
+    <div class="calendar three">
+      <%= render "calendar" %>
+    </div>
+   </div>
+   <br style="clear: left;" />
   </div>
-
- <input type="button" class="calendar_button btn btn-default" value="Show Calendar">
-  <div class="calendar">
-    <%= render "calendar" %>
-  </div>
-
-  <div>
-    <% @guests.each do |guest| %>
-      <p><b>Room Number: </b><%= guest.room_number %></p>
-      <p><b>Name: </b><%= guest.first_name %> <%= guest.last_name %></p>
-      <p><b>Phone: </b><%= guest.phone %></p>
-    <% end %>
-  </div>
-
 </div>
