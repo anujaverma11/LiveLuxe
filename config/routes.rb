@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
+  get '/' => 'sessions#home'
+
   get '/signup' => 'hotels#new'
+  post '/signup' => 'hotels#new'
+
   post '/hotels' => 'hotels#create'
-  # post '/signup' => 'hotels#create'
+
   get '/login' => 'sessions#hotel'
   post '/login' => 'sessions#create'
 
-  get '/' => 'sessions#guest'
-  post '/' => 'sessions#create'
+  get '/guests' => 'sessions#guest'
+  post '/guests' => 'sessions#create'
 
   get '/calendar' => 'hotels#calendar'
 

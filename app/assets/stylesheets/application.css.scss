@@ -308,4 +308,62 @@ padding-left: 1em;
 span .ng .panel-heading{
   font-size: 30px;
 }
+.logo{
+  padding: 20px;
+}
+.logo img {
+  width: 240px;
+  height: 120px;
+  border: 1px;
+}
 
+.mainpage {
+  width: 100%;
+  height: 100%;
+  background-image: url("sea.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: yellow;
+  position: fixed;
+}
+
+.mainpage h1{
+  text-align: center;
+  }
+
+.mainpage h4 {
+  z-index: 3;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.3em;
+  margin-bottom: 50px;
+  }
+.mainNavi{
+  width: 100%;
+  height: 40px;
+  }
+.navigator {
+  text-align: center;
+  position: relative;
+  height: 200px;
+  display: inline-block;
+  }
+
+.btn1{
+  margin-left: 450px;
+  padding-right: 20px;
+}
+.homeFeature {
+  text-align: center;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  margin: 50px;
+  display: inline-block;
+}
+
+.btn {
+  width: 200px;
+  z-index: 4;
+}

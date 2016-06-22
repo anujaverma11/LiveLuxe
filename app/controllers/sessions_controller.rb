@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         redirect_to guest_path id: session[:guest_id]
       else
           flash.now.alert = "Invalid Key"
-          redirect_to '/'
+          redirect_to '/guests'
       end
     end
   end
