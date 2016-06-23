@@ -16,6 +16,7 @@ class HotelsController < ApplicationController
   end
 
   def index
+    redirect_to '/login'
   end
 
   def show

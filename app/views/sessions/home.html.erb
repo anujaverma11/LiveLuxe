@@ -1,24 +1,20 @@
-
-
-
- <div class="mainpage">
+<div class="mainpage">
     <div class="logo">
           <img src="luxe-logo.png">
         </div>
 
     <div class="mainCanvas">
+      <div id="container"></div>
       <h1>Hospitality your guests will remember.</h1>
         <div class="homeRow">
           <h4>Gives your guests the ability to schedule hotel amenities via Smartphones. See the list of all real-time requests on hotels calendar. Send guests check-in/service-requests information via Text and set it on their calendar.</h4>
         </div>
         <div class="mainNavi">
           <div class="navigator btn1">
-            <%= form_tag '/signup' do %>
-              <%= submit_tag raw("Register Your Hotel"), class: "btn btn-success" %>
-            <% end %>
+            <%= button_to "Register Your Hotel", signup_path, method: "get", :class => "btn btn-success" %>
           </div>
           <div class="navigator">
-            <%= form_tag '/login' do %>
+            <%= form_tag '/signin' do %>
               <%= submit_tag raw("Hotel Sign in"), class: "btn btn-success" %>
               <%#= button_to "Productos", login_path, method: :get %>
             <% end %>

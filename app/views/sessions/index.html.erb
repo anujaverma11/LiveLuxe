@@ -1,0 +1,94 @@
+
+<div class="splash-container">
+    <div class="logo">
+        <img src="luxe-logo.png">
+    </div>
+    <div class="splash">
+        <h1 class="splash-head">Hospitality your guests will remember.</h1>
+        <p class="splash-subhead">
+            Gives your guests the ability to schedule hotel amenities via Smartphones. See the list of all real-time requests on hotels calendar. Send guests check-in/service-requests information via Text and set it on their calendar.
+        </p>
+        <p>
+            <%= button_to "Register Your Hotel", signup_path, method: "get", :class => "button pure-button-primary" %>
+            <%= form_tag '/signin' do %>
+              <%= submit_tag raw("Hotel Sign in"), class: "button pure-button-primary" %>
+            <% end %>
+          </div>
+        </p>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="content">
+        <h2 class="content-head is-center">"Luxury must be comfortable, otherwise its not luxuary."</h2>
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-rocket"></i>
+                    Get Started Quickly
+                </h3>
+                <p>
+                    Log of all hotel service requests, Room Information and more.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-mobile"></i>
+                    Text Notifications
+                </h3>
+                <p>
+                    Send text notification with check-in details and service reminders.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-th-large"></i>
+                    Features and Activities Overview
+                </h3>
+                <p>
+                    List of all on-site amenities such as swimming pools, a health club, spa, ballrooms, vallet, and other amenities.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-check-square-o"></i>
+                    Plays Nice
+                </h3>
+                <p>
+                    No more concierge calls!!!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ribbon l-box-lrg pure-g">
+    </div>
+
+    <div class="content">
+        <h2 class="content-head is-center">Contact Us</h2>
+
+
+            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+                <h4>Contact Us</h4>
+                <p>
+                    For questions regarding our products, please contact: support@liveluxe.com
+                </p>
+
+                <!-- <h4>More Information</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua.
+                </p> -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer l-box is-center">
+        You are on LiveLuxe.com
+    </div>
+
+</div>
+
+
